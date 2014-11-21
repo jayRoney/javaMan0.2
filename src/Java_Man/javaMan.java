@@ -17,7 +17,24 @@ public class javaMan {
 
     }
 
+    public int getxCoor() {
+        return xCoor;
+    }
+
+    public void setxCoor(int xCoor) {
+        this.xCoor = xCoor;
+    }
+
+    public int getyCoor() {
+        return yCoor;
+    }
+
+    public void setyCoor(int yCoor) {
+        this.yCoor = yCoor;
+    }
+
     public void tick(){
+
 
 
     }

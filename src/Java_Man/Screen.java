@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.Color;
+import java.util.Random;
 
 public class Screen extends JPanel implements Runnable{
 
@@ -19,6 +20,11 @@ public class Screen extends JPanel implements Runnable{
 
     private javaMan b;
     private ArrayList<javaMan> player;
+
+    private javaCup cup;
+    private ArrayList<javaCup>cups;
+
+    private Random r;
 
     private int xCoor = 10, yCoor = 10;
     private int size = 5;
@@ -35,8 +41,10 @@ public class Screen extends JPanel implements Runnable{
         addKeyListener(key);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        player = new ArrayList<javaMan>();
+        r = new Random();
 
+        player = new ArrayList<javaMan>();
+        cups = new ArrayList<javaCup>();
         start();
     }
 
@@ -46,7 +54,24 @@ public class Screen extends JPanel implements Runnable{
             player.add(b);
 
         }
+           if (cups.size() == 0){
+           int xCoor = r.nextInt(79);
+           int yCoor = r.nextInt(79);
 
+            cup = new javaCup(xCoor,yCoor, 10);
+             cups.add(cup);
+
+        }
+        for(int i = 0; i<cups.size();i++){
+            if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
+                size++;
+                cups.remove(i);
+                i--;
+            }
+        }
+        for (int i = 0; i < player.size();i++){
+            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
+        }
         ticks++;
 
         if(ticks>250000){
@@ -68,20 +93,25 @@ public class Screen extends JPanel implements Runnable{
     }
 
     public void paint(Graphics g) {
-        g.clearRect(0,0,WIDTH,HEIGHT);
-        g.setColor(Color.BLUE);
-        for (int i = 0; i < WIDTH / 10; i++){
-        g.drawLine(i * 10, 0, i * 10, HEIGHT);
+        g.clearRect(0, 0, WIDTH, HEIGHT);
+        g.setColor(new Color(10,50, 0));
+        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.setColor(Color.BLACK);
 
-
-    }
-            for (int i = 0; i < HEIGHT / 10; i++) {
-                g.drawLine(0,i * 10, WIDTH,i*10);
-            }
-        for(int i = 0; i<player.size(); i++){
+        for (int i = 0; i < WIDTH / 10; i++) {
+            g.drawLine(i * 10, 0, i * 10, HEIGHT);
+        }
+        for (int i = 0; i < HEIGHT / 10; i++) {
+            g.drawLine(0, i * 10, WIDTH, i * 10);
+        }
+        for (int i = 0; i < player.size(); i++) {
             player.get(i).draw(g);
         }
-    }
+//        for (int i = 0; i < cups.size(); i++) {
+//               cups.get(i).draw(g);
+//            }
+        }
+
 
     public void start(){
         running = true;
