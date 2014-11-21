@@ -59,7 +59,7 @@ public class Screen extends JPanel implements Runnable{
            int yCoor = r.nextInt(79);
 
             cup = new javaCup(xCoor,yCoor, 10);
-             cups.add(cup);
+            cups.add(cup);
 
         }
         for(int i = 0; i<cups.size();i++){
@@ -107,9 +107,9 @@ public class Screen extends JPanel implements Runnable{
         for (int i = 0; i < player.size(); i++) {
             player.get(i).draw(g);
         }
-//        for (int i = 0; i < cups.size(); i++) {
-//               cups.get(i).draw(g);
-//            }
+        for (int i = 0; i < cups.size(); i++) {
+               cups.get(i).draw(g);
+            }
         }
 
 
