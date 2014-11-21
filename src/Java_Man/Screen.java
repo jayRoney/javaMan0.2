@@ -8,13 +8,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.Color;
 import java.util.Random;
+import java.awt.Dimension;
 
 public class Screen extends JPanel implements Runnable{
 
-    public static final int WIDTH = 800, HEIGHT = 800;
+    public static final int WIDTH = 800, HEIGHT = 1000;
     private Thread thread;
     private boolean running = false;
 
@@ -27,7 +28,7 @@ public class Screen extends JPanel implements Runnable{
     private Random r;
 
     private int xCoor = 10, yCoor = 10;
-    private int size = 5;
+    private int size = 0;
 
     private boolean right = true, left = false, up = false, down = false;
 
@@ -64,7 +65,7 @@ public class Screen extends JPanel implements Runnable{
         }
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
-                size++;
+                //size++;
                 cups.remove(i);
                 i--;
             }
@@ -83,7 +84,7 @@ public class Screen extends JPanel implements Runnable{
             ticks = 0;
 
             b = new javaMan(xCoor, yCoor, 10);
-            player.add(b);
+            //player.add(b);
 
             if(player.size()> size){
                 player.remove(0);
@@ -98,12 +99,12 @@ public class Screen extends JPanel implements Runnable{
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
-        for (int i = 0; i < WIDTH / 10; i++) {
-            g.drawLine(i * 10, 0, i * 10, HEIGHT);
-        }
-        for (int i = 0; i < HEIGHT / 10; i++) {
-            g.drawLine(0, i * 10, WIDTH, i * 10);
-        }
+//        for (int i = 0; i < WIDTH / 10; i++) {
+//            g.drawLine(i * 10, 0, i * 10, HEIGHT);
+//        }
+//        for (int i = 0; i < HEIGHT / 10; i++) {
+//            g.drawLine(0, i * 10, WIDTH, i * 10);
+//        }
         for (int i = 0; i < player.size(); i++) {
             player.get(i).draw(g);
         }
