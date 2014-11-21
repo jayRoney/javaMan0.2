@@ -94,7 +94,7 @@ public class Screen extends JPanel implements Runnable{
 
     public void paint(Graphics g) {
         g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setColor(new Color(10,50, 0));
+        g.setColor(Color.CYAN);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
