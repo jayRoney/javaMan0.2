@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class javaMan {
 
-    int xCoor, yCoor, width, height;
+    private int xCoor, yCoor, width, height;
 
     public javaMan(int xCoor, int yCoor, int tilesize){
         this.xCoor = xCoor;
@@ -26,6 +26,6 @@ public class javaMan {
         g.setColor(Color.BLACK);
         g.fillRect(xCoor * width, yCoor * height, width, height);
         g.setColor(Color.GREEN);
-        g.fillRect(xCoor * width + 2, yCoor * height + 2, width, height);
+        g.fillRect(xCoor * width + 2, yCoor * height + 2, width-4, height-4);
     }
 }
