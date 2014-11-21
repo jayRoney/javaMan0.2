@@ -10,7 +10,7 @@ public class Frame extends JFrame {
     public Frame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("JavaMan");
-        setResizable(true);
+        setResizable(false);
 
         init();
 
