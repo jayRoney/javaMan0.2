@@ -64,7 +64,7 @@ public class Screen extends JPanel implements Runnable{
         }
         if (cups.size() == 0){
             int xCoor = r.nextInt(52);//creates random x and y coords
-            int yCoor = r.nextInt(42);
+            int yCoor = r.nextInt(40);
 
             cup = new javaCup(xCoor,yCoor, 15);//creates new cup
             cups.add(cup);
@@ -73,7 +73,7 @@ public class Screen extends JPanel implements Runnable{
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed/1.25;//makes javaMan move faster after getting javaCup
+                tickSpeed=tickSpeed*0.90;//makes javaMan move faster after getting javaCup
                 score++;
                 i--;
 
