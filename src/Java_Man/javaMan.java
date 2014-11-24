@@ -14,7 +14,6 @@ public class javaMan {
         this.yCoor = yCoor;
         width = tilesize;
         height = tilesize;
-
     }
         //get and set methdos
     public int getxCoor() {

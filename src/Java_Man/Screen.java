@@ -19,34 +19,34 @@ public class Screen extends JPanel implements Runnable{
     private Thread thread;
     private boolean running = false;
 
-    private javaMan b;
-    private ArrayList<javaMan> player;
+    private javaMan b;//creates new instance of javaMan called b
+    private ArrayList<javaMan> player;//creates new Arraylist called player for javaMan
 
-    private javaCup cup;
-    private ArrayList<javaCup>cups;
+    private javaCup cup;//creates new instance javaCup called cup
+    private ArrayList<javaCup>cups;//creates new arraylist for javacups called cups
 
-    private Random r;
+    private Random r;//random number generator
 
     private int xCoor = 10, yCoor = 10;
     private int size = 0;
 
-    private boolean right = true, left = false, up = false, down = false;
+    private boolean right = true, left = false, up = false, down = false;//booleans for directional pad
 
     private int ticks = 0;
     private int tickSpeed=1500000;
 
-    private Key key;
+    private Key key;//creates new instance of key
 
-    public Screen(){
+    public Screen(){//sets up screen
         setFocusable(true);
         key = new Key();
-        addKeyListener(key);
+        addKeyListener(key);//listens out for keypresses from left, right, up, and down
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        r = new Random();
+        r = new Random();//new random number generator
 
-        player = new ArrayList<javaMan>();
-        cups = new ArrayList<javaCup>();
+        player = new ArrayList<javaMan>();//new arraylist for javaman called players
+        cups = new ArrayList<javaCup>();//new arraylist for javacups called cups
         start();
     }
 
@@ -57,7 +57,7 @@ public class Screen extends JPanel implements Runnable{
 
         }
         if (cups.size() == 0){
-           int xCoor = r.nextInt(53);
+           int xCoor = r.nextInt(53);//creates random x and y coords
            int yCoor = r.nextInt(44);
 
             cup = new javaCup(xCoor,yCoor, 15);
@@ -66,9 +66,8 @@ public class Screen extends JPanel implements Runnable{
         }
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
-                //size++;
                 cups.remove(i);
-                tickSpeed=tickSpeed/2;
+                tickSpeed=tickSpeed/2;//makes javaMan move faster after getting javaCup
                 i--;
             }
         }
@@ -95,8 +94,7 @@ public class Screen extends JPanel implements Runnable{
 
             ticks = 0;
 
-            b = new javaMan(xCoor, yCoor, 10);
-            //player.add(b);
+            b = new javaMan(xCoor, yCoor, 10);//creates new javaman at defined x and y coords, at size 10
 
             if(player.size()> size){
                 player.remove(0);
@@ -104,27 +102,18 @@ public class Screen extends JPanel implements Runnable{
         }
 
     }
-//    public void timer(){
-//        if(tickSpeed>100000) {
-//            tickSpeed--;
-//        }
-//    }
+
     public void paint(Graphics g) {
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.PINK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
-//        for (int i = 0; i < WIDTH / 10; i++) {
-//            g.drawLine(i * 10, 0, i * 10, HEIGHT);
-//        }
-//        for (int i = 0; i < HEIGHT / 10; i++) {
-//            g.drawLine(0, i * 10, WIDTH, i * 10);
-//        }
-        for (int i = 0; i < player.size(); i++) {
+
+        for (int i = 0; i < player.size(); i++) {//draws javaman to screen
             player.get(i).draw(g);
         }
-        for (int i = 0; i < cups.size(); i++) {
+        for (int i = 0; i < cups.size(); i++) {//draws cup to screen
                cups.get(i).draw(g);
             }
         }
@@ -149,16 +138,15 @@ public class Screen extends JPanel implements Runnable{
 
     }
 
-    public void run(){
+    public void run(){//starts ticks and repaints screen
         while(running){
             tick();
             repaint();
-            //timer();
         }
 
     }
 
-    private class Key implements KeyListener {
+    private class Key implements KeyListener {//listens out for key presses from directional pad
 
 
         public void keyPressed(KeyEvent e){
