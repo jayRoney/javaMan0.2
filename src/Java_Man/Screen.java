@@ -15,22 +15,22 @@ import java.awt.Dimension;
 
 public class Screen extends JPanel implements Runnable{
 
-    public static final int WIDTH = 900, HEIGHT = 700;
-    private Thread thread;
+    public static final int WIDTH = 900, HEIGHT = 700;//creates constant variables for screen height
+    private Thread thread;//new thread
     private boolean running = false;
 
-    private javaMan b;
-    private ArrayList<javaMan> player;
+    private javaMan b;//creates instance of new javaMan character
+    private ArrayList<javaMan> player;//array to hold javaMan
 
-    private javaCup cup;
-    private ArrayList<javaCup>cups;
+    private javaCup cup;//creates new instance of javaCup
+    private ArrayList<javaCup>cups;//creates new array for javaCups
 
-    private Random r;
+    private Random r;//random number generator
 
     private int xCoor = 10, yCoor = 10;
     private int size = 0;
 
-    private boolean right = true, left = false, up = false, down = false;
+    private boolean right = true, left = false, up = false, down = false;//directional booleans
 
     private int ticks = 0;
 
@@ -38,15 +38,15 @@ public class Screen extends JPanel implements Runnable{
 
     public Screen(){
         setFocusable(true);
-        key = new Key();
-        addKeyListener(key);
+        key = new Key();//new instance of key
+        addKeyListener(key);//listens out for key presses, left, right, up, or down.
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         r = new Random();
 
-        player = new ArrayList<javaMan>();
-        cups = new ArrayList<javaCup>();
-        start();
+        player = new ArrayList<javaMan>();//creates new arrayList to hold javaMan
+        cups = new ArrayList<javaCup>();//creates new arrayList to hold javaCups
+        start();//starts game
     }
 
     public void tick(){
@@ -59,13 +59,12 @@ public class Screen extends JPanel implements Runnable{
            int xCoor = r.nextInt(79);
            int yCoor = r.nextInt(79);
 
-            cup = new javaCup(xCoor,yCoor, 15);
-            cups.add(cup);
+            cup = new javaCup(xCoor,yCoor, 15);//adds new cup to screen
+            cups.add(cup);//adds new cup to array
 
         }
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
-                //size++;
                 cups.remove(i);
                 i--;
             }
@@ -79,7 +78,7 @@ public class Screen extends JPanel implements Runnable{
         }
 
 
-        if(xCoor < 0 || xCoor > 54 || yCoor < 0 || yCoor > 54 ) {
+        if(xCoor < 0 || xCoor > 54 || yCoor < 0 || yCoor > 54 ) {//boundaries for screen
             stop();
         }
 
@@ -93,10 +92,10 @@ public class Screen extends JPanel implements Runnable{
 
             ticks = 0;
 
-            b = new javaMan(xCoor, yCoor, 10);
-            //player.add(b);
+            b = new javaMan(xCoor, yCoor, 10);//creates new instance of javaMan
 
-            if(player.size()> size){
+
+           if(player.size()> size){
                 player.remove(0);
             }
         }
@@ -109,25 +108,19 @@ public class Screen extends JPanel implements Runnable{
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
-//        for (int i = 0; i < WIDTH / 10; i++) {
-//            g.drawLine(i * 10, 0, i * 10, HEIGHT);
-//        }
-//        for (int i = 0; i < HEIGHT / 10; i++) {
-//            g.drawLine(0, i * 10, WIDTH, i * 10);
-//        }
-        for (int i = 0; i < player.size(); i++) {
+        for (int i = 0; i < player.size(); i++) {//draws javaMan to screen
             player.get(i).draw(g);
         }
-        for (int i = 0; i < cups.size(); i++) {
+        for (int i = 0; i < cups.size(); i++) {//draws cups to screen
                cups.get(i).draw(g);
             }
         }
 
 
-    public void start(){
-        running = true;
-        thread = new Thread(this, "Game Loop");
-        thread.start();
+    public void start(){//starts game
+        running = true;//sets running to true to run game
+        thread = new Thread(this, "Game Loop");//new thread to handle multiple tasks
+        thread.start();//starts thread
 
 
     }
@@ -146,12 +139,12 @@ public class Screen extends JPanel implements Runnable{
     public void run(){
         while(running){
             tick();
-            repaint();
+            repaint();//updates screen
         }
 
     }
 
-    private class Key implements KeyListener {
+    private class Key implements KeyListener {//key class that tracks key presses
 
 
         public void keyPressed(KeyEvent e){
