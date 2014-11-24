@@ -15,38 +15,39 @@ import java.awt.Dimension;
 
 public class Screen extends JPanel implements Runnable{
 
-    public static final int WIDTH = 900, HEIGHT = 700;//creates constant variables for screen height
-    private Thread thread;//new thread
+    public static final int WIDTH = 900, HEIGHT = 700;
+    private Thread thread;
     private boolean running = false;
 
-    private javaMan b;//creates instance of new javaMan character
-    private ArrayList<javaMan> player;//array to hold javaMan
+    private javaMan b;
+    private ArrayList<javaMan> player;
 
-    private javaCup cup;//creates new instance of javaCup
-    private ArrayList<javaCup>cups;//creates new array for javaCups
+    private javaCup cup;
+    private ArrayList<javaCup>cups;
 
-    private Random r;//random number generator
+    private Random r;
 
     private int xCoor = 10, yCoor = 10;
     private int size = 0;
 
-    private boolean right = true, left = false, up = false, down = false;//directional booleans
+    private boolean right = true, left = false, up = false, down = false;
 
     private int ticks = 0;
+    private int tickSpeed=1500000;
 
     private Key key;
 
     public Screen(){
         setFocusable(true);
-        key = new Key();//new instance of key
-        addKeyListener(key);//listens out for key presses, left, right, up, or down.
+        key = new Key();
+        addKeyListener(key);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         r = new Random();
 
-        player = new ArrayList<javaMan>();//creates new arrayList to hold javaMan
-        cups = new ArrayList<javaCup>();//creates new arrayList to hold javaCups
-        start();//starts game
+        player = new ArrayList<javaMan>();
+        cups = new ArrayList<javaCup>();
+        start();
     }
 
     public void tick(){
@@ -55,36 +56,28 @@ public class Screen extends JPanel implements Runnable{
             player.add(b);
 
         }
-           if (cups.size() == 0){
-           int xCoor = r.nextInt(79);
-           int yCoor = r.nextInt(79);
+        if (cups.size() == 0){
+           int xCoor = r.nextInt(53);
+           int yCoor = r.nextInt(44);
 
-            cup = new javaCup(xCoor,yCoor, 15);//adds new cup to screen
-            cups.add(cup);//adds new cup to array
+            cup = new javaCup(xCoor,yCoor, 15);
+            cups.add(cup);
 
         }
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
+                //size++;
                 cups.remove(i);
+                tickSpeed=tickSpeed/2;
                 i--;
             }
         }
         for (int i = 0; i < player.size();i++){
             if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
-                if(i != player.size() - 1) {
-                    stop();
-                }
-
         }
-
-
-        if(xCoor < 0 || xCoor > 54 || yCoor < 0 || yCoor > 54 ) {//boundaries for screen
-            stop();
-        }
-
         ticks++;
 
-        if(ticks>250000){
+        if(ticks>tickSpeed){
             if(right) xCoor++;
             if(left) xCoor--;
             if(up) yCoor--;
@@ -92,35 +85,45 @@ public class Screen extends JPanel implements Runnable{
 
             ticks = 0;
 
-            b = new javaMan(xCoor, yCoor, 10);//creates new instance of javaMan
+            b = new javaMan(xCoor, yCoor, 10);
+            //player.add(b);
 
-
-           if(player.size()> size){
+            if(player.size()> size){
                 player.remove(0);
             }
         }
 
     }
-
+//    public void timer(){
+//        if(tickSpeed>100000) {
+//            tickSpeed--;
+//        }
+//    }
     public void paint(Graphics g) {
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.PINK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
-        for (int i = 0; i < player.size(); i++) {//draws javaMan to screen
+//        for (int i = 0; i < WIDTH / 10; i++) {
+//            g.drawLine(i * 10, 0, i * 10, HEIGHT);
+//        }
+//        for (int i = 0; i < HEIGHT / 10; i++) {
+//            g.drawLine(0, i * 10, WIDTH, i * 10);
+//        }
+        for (int i = 0; i < player.size(); i++) {
             player.get(i).draw(g);
         }
-        for (int i = 0; i < cups.size(); i++) {//draws cups to screen
+        for (int i = 0; i < cups.size(); i++) {
                cups.get(i).draw(g);
             }
         }
 
 
-    public void start(){//starts game
-        running = true;//sets running to true to run game
-        thread = new Thread(this, "Game Loop");//new thread to handle multiple tasks
-        thread.start();//starts thread
+    public void start(){
+        running = true;
+        thread = new Thread(this, "Game Loop");
+        thread.start();
 
 
     }
@@ -139,12 +142,13 @@ public class Screen extends JPanel implements Runnable{
     public void run(){
         while(running){
             tick();
-            repaint();//updates screen
+            repaint();
+            //timer();
         }
 
     }
 
-    private class Key implements KeyListener {//key class that tracks key presses
+    private class Key implements KeyListener {
 
 
         public void keyPressed(KeyEvent e){
