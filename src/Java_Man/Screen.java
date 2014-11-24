@@ -3,11 +3,13 @@ package Java_Man; /**
  */
 
 import com.sun.java.swing.plaf.windows.WindowsTableHeaderUI;
+import javafx.scene.text.Font;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.text.StyledEditorKit;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.util.Random;
@@ -125,6 +127,7 @@ public class Screen extends JPanel implements Runnable{
             cups.get(i).draw(g);
         }
 
+        g.setColor(Color.DARK_GRAY);
         g.drawString("Score: " + score, 10, 30);
 
     }
