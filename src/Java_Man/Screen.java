@@ -79,7 +79,7 @@ public class Screen extends JPanel implements Runnable{
         }
 
 
-        if(xCoor < 0 || xCoor > 54 || yCoor < 0 || yCoor > 54 ) {
+        if(xCoor < 0 || xCoor > 55 || yCoor < 0 || yCoor > 55 ) {
             stop();
         }
 
