@@ -60,8 +60,8 @@ public class Screen extends JPanel implements Runnable{
 
         }
         if (cups.size() == 0){
-           int xCoor = r.nextInt(53);//creates random x and y coords
-           int yCoor = r.nextInt(44);
+           int xCoor = r.nextInt(52);//creates random x and y coords
+           int yCoor = r.nextInt(42);
 
             cup = new javaCup(xCoor,yCoor, 15);//creates new cup
             cups.add(cup);
