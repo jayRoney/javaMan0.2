@@ -15,7 +15,7 @@ import java.awt.Dimension;
 
 public class Screen extends JPanel implements Runnable{
 
-    public static final int WIDTH = 800, HEIGHT = 1000;
+    public static final int WIDTH = 900, HEIGHT = 700;
     private Thread thread;
     private boolean running = false;
 
@@ -51,7 +51,7 @@ public class Screen extends JPanel implements Runnable{
 
     public void tick(){
         if(player.size()==0){
-            b = new javaMan(xCoor, yCoor, 10);
+            b = new javaMan(xCoor, yCoor, 15);
             player.add(b);
 
         }
@@ -59,7 +59,7 @@ public class Screen extends JPanel implements Runnable{
            int xCoor = r.nextInt(79);
            int yCoor = r.nextInt(79);
 
-            cup = new javaCup(xCoor,yCoor, 10);
+            cup = new javaCup(xCoor,yCoor, 15);
             cups.add(cup);
 
         }
@@ -95,7 +95,7 @@ public class Screen extends JPanel implements Runnable{
 
     public void paint(Graphics g) {
         g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setColor(Color.CYAN);
+        g.setColor(Color.PINK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.BLACK);
 
