@@ -42,7 +42,7 @@ public class javaMan {
     public void draw(Graphics g){
         g.setColor(Color.BLACK);
         g.fillRect(xCoor * width, yCoor * height, width, height);
-        g.setColor(Color.GREEN);
+        g.setColor(Color.ORANGE);
         g.fillRect(xCoor * width + 2, yCoor * height + 2, width-4, height-4);
     }
 }
