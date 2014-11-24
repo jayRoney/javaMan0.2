@@ -74,7 +74,17 @@ public class Screen extends JPanel implements Runnable{
         }
         for (int i = 0; i < player.size();i++){
             if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
+                if(i != player.size() - 1){
+                stop();
         }
+
+        }
+
+
+        if(xCoor < 1 || xCoor > 58 || yCoor < 1 || yCoor > 45) {
+            stop();
+        }
+
         ticks++;
 
         if(ticks>tickSpeed){
