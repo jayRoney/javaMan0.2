@@ -8,11 +8,11 @@ import java.awt.GridLayout;
 public class Frame extends JFrame {
 
     public Frame(){
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("JavaMan");
-        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//sets default close operation to close window
+        setTitle("JavaMan");//sets title of frame
+        setResizable(false);//window can not be resized
 
-        init();
+        init();//calls init to set layout of grid and creates a new instance of screen
 
 
     }
@@ -23,7 +23,7 @@ public class Frame extends JFrame {
         Screen s = new Screen();
         add(s);//adds Screen to frame
 
-        pack();//sets size of frame to whatever size of screen is
+        pack();//sets size of frame to whatever size of screen is, so it "packs" the screen in the window
 
         setLocationRelativeTo(null);
         setVisible(true);//make frame visible
@@ -32,7 +32,7 @@ public class Frame extends JFrame {
 
     public static void main(String[] ars){
 
-        new Frame();
+        new Frame();//creates a new frame with screen and pretty much begins the game
 
     }
 }

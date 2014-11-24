@@ -72,6 +72,9 @@ public class Screen extends JPanel implements Runnable{
                 i--;
             }
         }
+        for (int i = 0; i < player.size();i++){
+            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
+        }
         ticks++;
 
         if(ticks>tickSpeed){
@@ -126,6 +129,12 @@ public class Screen extends JPanel implements Runnable{
     }
 
     public void stop(){
+        running = false;
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
