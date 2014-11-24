@@ -63,18 +63,17 @@ public class Screen extends JPanel implements Runnable{
 
         }
         if (cups.size() == 0){
-           int xCoor = r.nextInt(52);//creates random x and y coords
-           int yCoor = r.nextInt(42);
+            int xCoor = r.nextInt(52);//creates random x and y coords
+            int yCoor = r.nextInt(42);
 
             cup = new javaCup(xCoor,yCoor, 15);//creates new cup
             cups.add(cup);
 
         }
-        double x = .75;
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed/2;//makes javaMan move faster after getting javaCup
+                tickSpeed=tickSpeed/1.25;//makes javaMan move faster after getting javaCup
                 score++;
                 i--;
 
@@ -82,9 +81,9 @@ public class Screen extends JPanel implements Runnable{
         }
         for (int i = 0; i < player.size();i++){
             if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
-                if(i != player.size() - 1){
+            if(i != player.size() - 1){
                 stop();
-        }
+            }
 
         }
 
@@ -123,12 +122,12 @@ public class Screen extends JPanel implements Runnable{
             player.get(i).draw(g);
         }
         for (int i = 0; i < cups.size(); i++) {//draws cup to screen
-               cups.get(i).draw(g);
-            }
+            cups.get(i).draw(g);
+        }
 
         g.drawString("Score: " + score, 10, 30);
 
-        }
+    }
 
 
     public void start(){//starts thread and sets run to true to start game
