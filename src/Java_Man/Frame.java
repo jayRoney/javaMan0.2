@@ -23,6 +23,9 @@ public class Frame extends JFrame {
         Screen s = new Screen();
         add(s);//adds Screen to frame
 
+
+
+
         pack();//sets size of frame to whatever size of screen is, so it "packs" the screen in the window
 
         setLocationRelativeTo(null);

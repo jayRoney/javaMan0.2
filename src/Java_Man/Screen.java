@@ -13,9 +13,10 @@ import java.awt.Color;
 import java.util.Random;
 import java.awt.Dimension;
 
+
 public class Screen extends JPanel implements Runnable{
 
-    public static final int WIDTH = 900, HEIGHT = 700;
+    public static final int WIDTH = 900, HEIGHT = 700;//constant variables for screen size
     private Thread thread;
     private boolean running = false;
 
@@ -33,7 +34,7 @@ public class Screen extends JPanel implements Runnable{
     private boolean right = true, left = false, up = false, down = false;//booleans for directional pad
 
     private int ticks = 0;
-    private int tickSpeed=1500000;
+    private double tickSpeed=900000;
 
     private Key key;//creates new instance of key
 
@@ -44,6 +45,8 @@ public class Screen extends JPanel implements Runnable{
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         r = new Random();//new random number generator
+
+
 
         player = new ArrayList<javaMan>();//new arraylist for javaman called players
         cups = new ArrayList<javaCup>();//new arraylist for javacups called cups
@@ -60,14 +63,16 @@ public class Screen extends JPanel implements Runnable{
            int xCoor = r.nextInt(53);//creates random x and y coords
            int yCoor = r.nextInt(44);
 
-            cup = new javaCup(xCoor,yCoor, 15);
+            cup = new javaCup(xCoor,yCoor, 15);//creates new cup
             cups.add(cup);
 
         }
+        double x = .75;
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed/2;//makes javaMan move faster after getting javaCup
+                tickSpeed=tickSpeed/1.5;//makes javaMan move faster after getting javaCup
+
                 i--;
             }
         }
@@ -80,7 +85,7 @@ public class Screen extends JPanel implements Runnable{
         }
 
 
-        if(xCoor < 1 || xCoor > 58 || yCoor < 1 || yCoor > 45) {
+        if(xCoor < 1 || xCoor > 58 || yCoor < 1 || yCoor > 45) {//sets boundaries, stops game if javaman runs into boundary
             stop();
         }
 
@@ -119,7 +124,7 @@ public class Screen extends JPanel implements Runnable{
         }
 
 
-    public void start(){
+    public void start(){//starts thread and sets run to true to start game
         running = true;
         thread = new Thread(this, "Game Loop");
         thread.start();
@@ -127,7 +132,7 @@ public class Screen extends JPanel implements Runnable{
 
     }
 
-    public void stop(){
+    public void stop(){//stops thread and game
         running = false;
         try {
             thread.join();
@@ -174,12 +179,16 @@ public class Screen extends JPanel implements Runnable{
             }
         }
         @Override
-        public void keyReleased(KeyEvent arg0){
+        public void keyReleased(KeyEvent arg0){//unused method that is required with keypressed()
 
         }
         @Override
-        public void keyTyped(KeyEvent arg0){
+        public void keyTyped(KeyEvent arg0){//unused method that is required with keypressed()
 
         }
     }
+
+
+
+
 }
