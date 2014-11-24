@@ -70,7 +70,18 @@ public class Screen extends JPanel implements Runnable{
                 i--;
             }
         }
+        for (int i = 0; i < player.size();i++){
+            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
+                if(i != player.size() - 1) {
+                    stop();
+                }
 
+        }
+
+
+        if(xCoor < 0 || xCoor > 54 || yCoor < 0 || yCoor > 54 ) {
+            stop();
+        }
 
         ticks++;
 
@@ -122,6 +133,12 @@ public class Screen extends JPanel implements Runnable{
     }
 
     public void stop(){
+        running = false;
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
