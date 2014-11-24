@@ -12,13 +12,13 @@ public class javaCup {
 
     private int xCoor, yCoor, width, height;
 
-    public javaCup(int xCoor, int yCoor, int tilesize){
+    public javaCup(int xCoor, int yCoor, int tilesize){//constructor for javaCups
         this.xCoor = xCoor;
         this.yCoor = yCoor;
         width = tilesize;
         height = tilesize;
     }
-
+        //get and set methods for javaCup position
     public int getyCoor() {
         return yCoor;
     }
@@ -40,7 +40,7 @@ public class javaCup {
     }
 
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g) {//draws our javaCup, (a red square at the moment)
         g.setColor(Color.RED);
         g.fillRect(xCoor * width, yCoor * height, width, height);
         //g.drawImage(xCoor * width, yCoor * height, width, height,)

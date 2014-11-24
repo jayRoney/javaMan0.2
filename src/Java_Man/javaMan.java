@@ -9,14 +9,14 @@ public class javaMan {
 
     private int xCoor, yCoor, width, height;
 
-    public javaMan(int xCoor, int yCoor, int tilesize){
+    public javaMan(int xCoor, int yCoor, int tilesize){//constructor for javaMan
         this.xCoor = xCoor;
         this.yCoor = yCoor;
         width = tilesize;
         height = tilesize;
 
     }
-
+        //get and set methdos
     public int getxCoor() {
         return xCoor;
     }
