@@ -33,7 +33,7 @@ public class Screen extends JPanel implements Runnable{
     private boolean right = true, left = false, up = false, down = false;
 
     private int ticks = 0;
-    private int tickSpeed=1500000;
+    private int tickSpeed=1000000;
 
     private Key key;
 
