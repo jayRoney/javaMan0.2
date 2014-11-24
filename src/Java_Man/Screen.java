@@ -33,6 +33,7 @@ public class Screen extends JPanel implements Runnable{
     private boolean right = true, left = false, up = false, down = false;
 
     private int ticks = 0;
+    private int tickSpeed=1500000;
 
     private Key key;
 
@@ -55,9 +56,9 @@ public class Screen extends JPanel implements Runnable{
             player.add(b);
 
         }
-           if (cups.size() == 0){
-           int xCoor = r.nextInt(79);
-           int yCoor = r.nextInt(79);
+        if (cups.size() == 0){
+           int xCoor = r.nextInt(53);
+           int yCoor = r.nextInt(44);
 
             cup = new javaCup(xCoor,yCoor, 15);
             cups.add(cup);
@@ -67,15 +68,13 @@ public class Screen extends JPanel implements Runnable{
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 //size++;
                 cups.remove(i);
+                tickSpeed=tickSpeed/2;
                 i--;
             }
         }
-        for (int i = 0; i < player.size();i++){
-            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
-        }
         ticks++;
 
-        if(ticks>250000){
+        if(ticks>tickSpeed){
             if(right) xCoor++;
             if(left) xCoor--;
             if(up) yCoor--;
@@ -92,7 +91,11 @@ public class Screen extends JPanel implements Runnable{
         }
 
     }
-
+//    public void timer(){
+//        if(tickSpeed>100000) {
+//            tickSpeed--;
+//        }
+//    }
     public void paint(Graphics g) {
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setColor(Color.PINK);
@@ -131,6 +134,7 @@ public class Screen extends JPanel implements Runnable{
         while(running){
             tick();
             repaint();
+            //timer();
         }
 
     }
