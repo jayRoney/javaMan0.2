@@ -36,6 +36,9 @@ public class Screen extends JPanel implements Runnable{
     private int ticks = 0;
     private double tickSpeed=900000;
 
+
+    private int score = 0;
+
     private Key key;//creates new instance of key
 
     public Screen(){//sets up screen
@@ -71,9 +74,10 @@ public class Screen extends JPanel implements Runnable{
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed/1.5;//makes javaMan move faster after getting javaCup
-
+                tickSpeed=tickSpeed/2;//makes javaMan move faster after getting javaCup
+                score++;
                 i--;
+
             }
         }
         for (int i = 0; i < player.size();i++){
@@ -121,6 +125,9 @@ public class Screen extends JPanel implements Runnable{
         for (int i = 0; i < cups.size(); i++) {//draws cup to screen
                cups.get(i).draw(g);
             }
+
+        g.drawString("Score: " + score, 10, 30);
+
         }
 
 
