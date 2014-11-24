@@ -41,8 +41,22 @@ public class javaCup {
 
 
     public void draw(Graphics g) {//draws our javaCup, (a red square at the moment)
-        g.setColor(Color.RED);
-        g.fillRect(xCoor * width, yCoor * height, width, height);
+        g.setColor(Color.WHITE);
+        g.fillRect(xCoor * width, yCoor * height, width, height);//the base square
+        g.fillRect((xCoor * width + 2), yCoor * height+height, width-4, 2);//bottom of the cup
+        g.fillRect((xCoor * width + 2), yCoor * height-1, width-4, 2);//top of cup
+        Color brown=new Color(156, 93, 82);//new Brown color the fill
+        g.setColor(brown);;//changes fill color
+            //Dimensions of the interior (fill) rectangles
+        g.fillRect(xCoor * width + 2, yCoor * height +2, width-4, height-10);
+        g.fillRect((xCoor * width + 2)+2, yCoor * height+7, width-8, height-13);
+        g.fillRect((xCoor * width + 2)+2, yCoor * height+1, width-8, height-13);
+            //draws the cup handle
+        g.setColor(Color.WHITE);
+        g.fillRect((xCoor * width)+(width-1), (yCoor * height)+(height/4), width/2, height/2);
+        g.setColor(Color.pink);
+        g.fillRect((xCoor * width)+(width-1)+width/6, (yCoor * height+height/6)+(height/4), width/4, height/4);
+            //Unused
         //g.drawImage(xCoor * width, yCoor * height, width, height,)
     }
 

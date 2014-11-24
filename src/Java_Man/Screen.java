@@ -36,7 +36,7 @@ public class Screen extends JPanel implements Runnable{
     private boolean right = true, left = false, up = false, down = false;//booleans for directional pad
 
     private int ticks = 0;
-    private double tickSpeed=900000;
+    private double tickSpeed=800000;
 
 
     private int score = 0;
@@ -65,8 +65,14 @@ public class Screen extends JPanel implements Runnable{
 
         }
         if (cups.size() == 0){
-            int xCoor = r.nextInt(52);//creates random x and y coords
-            int yCoor = r.nextInt(40);
+            int xCoor = r.nextInt(54);//creates random x coordinate between 0 and 54
+            if (xCoor==0){//Prevents cups from appearing at the left border of the screen
+                xCoor+=4;
+            }
+            int yCoor = r.nextInt(42);//creates random y coordinate between 0 and 42
+            if (yCoor==0){//Prevents cups from appearing at the upper border of the screen
+                yCoor+=4;
+            }
 
             cup = new javaCup(xCoor,yCoor, 15);//creates new cup
             cups.add(cup);
@@ -75,16 +81,17 @@ public class Screen extends JPanel implements Runnable{
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed*0.90;//makes javaMan move faster after getting javaCup
+                tickSpeed=tickSpeed*0.95;//makes javaMan move faster after getting javaCup
                 score++;
                 i--;
 
             }
         }
         for (int i = 0; i < player.size();i++){
-            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor());
-            if(i != player.size() - 1){
-                stop();
+            if (xCoor == player.get(i).getxCoor() && yCoor == player.get(i).getyCoor()){
+                if(i != player.size() - 1) {
+                    stop();
+                }
             }
 
         }

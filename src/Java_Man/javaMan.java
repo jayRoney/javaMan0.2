@@ -41,7 +41,7 @@ public class javaMan {
     public void draw(Graphics g){//javaMan is black
         g.setColor(Color.BLACK);
         g.fillRect(xCoor * width, yCoor * height, width, height);
-        g.setColor(Color.ORANGE);//changes background color
+        g.setColor(Color.ORANGE);//changes fill color
         g.fillRect(xCoor * width + 2, yCoor * height + 2, width-4, height-4);
     }
 }
