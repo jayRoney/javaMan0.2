@@ -81,7 +81,7 @@ public class Screen extends JPanel implements Runnable{
         for(int i = 0; i<cups.size();i++){
             if(xCoor == cups.get(i).getxCoor() && yCoor == cups.get(i).getyCoor()){
                 cups.remove(i);
-                tickSpeed=tickSpeed*0.95;//makes javaMan move faster after getting javaCup
+                tickSpeed=tickSpeed*0.90;//makes javaMan move faster after getting javaCup
                 score++;
                 i--;
 
